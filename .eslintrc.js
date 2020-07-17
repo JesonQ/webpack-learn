@@ -13,7 +13,9 @@ module.exports = {
   "rules": {  						// eslint检查的规则  0 忽略 1 警告 2 错误
       "no-console": 0, 				// 不检查console
       "eqeqeq": 0,					// 用 == 而不用 === 就报错
-      "no-alert": 0					// 不能使用alert
+      "no-alert": 0,					// 不能使用alert
+      "no-undef":0,
+      "no-unused-vars":0
   },
   "extends": "eslint:recommended" 	// 使用eslint推荐的默认规则
 }

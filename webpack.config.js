@@ -1,6 +1,7 @@
 // 注意这里写commonjs语法
 let { resolve } = require("path")
-
+// 插件都需要手动引入
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: "./src/js/app.js",  // 入口配置
   output: {
@@ -28,7 +29,37 @@ module.exports = {
         use: {
           loader: "eslint-loader"		//使用eslint-loader解析
         }
-      }
+      },
+      // babel转换
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
+      // 处理less里的图片
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,               		// 8kb以下的图片会base64处理
+            outputPath: 'images',           // 文件本地输出路径
+            publicPath: '../build/images',   // 图片的url路径
+            name: '[hash:8].[ext]',         // 修改文件名称和后缀 
+          }
+        }
+      },
     ]
   },
+  plugins: [
+    // 打包html
+    new HtmlWebpackPlugin({
+      template: './src/index.html', // 设置要编译的 HTML 源文件路径
+    })
+  ]
 }

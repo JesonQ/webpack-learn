@@ -16,7 +16,8 @@ console.log(test)
 import "../less/test1.less"
 import "../less/test2.less"
 
-
+// polyfill 解决旧浏览器高级语法问题  promise
+import '@babel/polyfill';
 
 window.love = "love"
 global.love = "love"
@@ -29,4 +30,12 @@ if(a == 100){
   console.log("正确的")
 }
 
-alert("我就alert")
+// alert("我就alert")
+
+let p = new Promise((resolve, reject)=>{
+  resolve("成功了")
+})
+p.then(
+  (v)=>{console.log(v)},
+  (r)=>{console.log(r)})
+
