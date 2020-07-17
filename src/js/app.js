@@ -7,3 +7,7 @@ console.log(m2);
 
 import m3 from "./m3";
 console.log(m3);
+
+// 引入json
+import test from "../json/test.json"
+console.log(test)
