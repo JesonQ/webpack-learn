@@ -39,3 +39,9 @@ p.then(
   (v)=>{console.log(v)},
   (r)=>{console.log(r)})
 
+// 字体文件
+import "../less/iconfont.less"
+
+// 引入css
+import "../css/style.css"
+
