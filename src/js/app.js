@@ -23,7 +23,9 @@ window.love = "love"
 global.love = "love"
 
 // $ = 100
-$("body").css("background","red");console.og(111)
+$("body").css("background","red")
+// 错误演示  map
+// ;console.og(111)
 
 let a = 100
 if(a == 100){
