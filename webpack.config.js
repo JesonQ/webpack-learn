@@ -6,9 +6,12 @@ module.exports = {
   entry: "./src/js/app.js",  // 入口配置
   output: {
     filename: "./js/app.js",
-    path: resolve(__dirname, "build")
+    path: resolve(__dirname, "build"),
+    //1. 添加 devServer 服务后需要调整输出的路径
+    publicPath: '/'
   },
-  mode: "production",
+  devtool: 'source-map',  // 设置 devtool 策略
+  mode: "development",
   // 配置规则
   module: {
     rules: [
@@ -57,7 +60,7 @@ module.exports = {
           options: {
             limit: 8192,               		// 8kb以下的图片会base64处理
             outputPath: 'images',           // 文件本地输出路径
-            publicPath: '../build/images',   // 图片的url路径
+            // publicPath: '../build/images',   // 图片的url路径
             name: '[hash:8].[ext]',         // 修改文件名称和后缀 
           }
         }
@@ -85,5 +88,15 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html', // 设置要编译的 HTML 源文件路径
     })
-  ]
+  ],
+  //3. 增加 devServer 配置
+  devServer: {
+    open: true, 	// 自动打开浏览器
+    compress: true, // 启动gzip压缩
+    port: 3000, 	// 端口号
+    hot: true		// 开启热模块替换功能
+  },
+  performance: {
+    hints: false
+  }
 }
